@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tablas con Juani</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="app-shell">
+    <header class="topbar">
+      <div>
+        <p class="eyebrow">Entrenador de multiplicaciones</p>
+        <h1>Tablas con Juani</h1>
+        <p class="subtitle">Práctica corta, adaptativa y sin repetir de memoria toda la tabla.</p>
+      </div>
+      <button id="resetProgressBtn" class="secondary danger">Reiniciar progreso</button>
+    </header>
+
+    <nav class="tabs" aria-label="Modos de práctica">
+      <button class="tab active" data-view="practice">Practicar</button>
+      <button class="tab" data-view="challenge">Desafío 1 minuto</button>
+      <button class="tab" data-view="progress">Progreso</button>
+    </nav>
+
+    <section id="practice" class="view active">
+      <div class="panel">
+        <div class="stats-row">
+          <div><span id="practiceCorrect">0</span><small>Aciertos</small></div>
+          <div><span id="practiceWrong">0</span><small>Errores</small></div>
+          <div><span id="practiceStreak">0</span><small>Racha</small></div>
+        </div>
+
+        <div class="card-area">
+          <div id="difficultyBadge" class="badge neutral">Nueva</div>
+          <div id="question" class="question">7 × 8</div>
+          <form id="answerForm" autocomplete="off">
+            <input
+              id="answerInput"
+              type="number"
+              inputmode="numeric"
+              placeholder="Respuesta"
+              aria-label="Respuesta"
+              required
+            />
+            <button type="submit" class="primary">Responder</button>
+          </form>
+          <p id="feedback" class="feedback" aria-live="polite"></p>
+          <p class="hint">Tip: podés responder y presionar Enter.</p>
+        </div>
+
+        <div class="controls">
+          <label>
+            Tablas a practicar
+            <select id="tableRange">
+              <option value="2-10">2 al 10</option>
+              <option value="6-9">6 al 9</option>
+              <option value="2-5">2 al 5</option>
+              <option value="custom">Personalizado</option>
+            </select>
+          </label>
+          <label id="customTablesWrap" class="hidden">
+            Elegí tablas
+            <input id="customTables" type="text" placeholder="Ej: 6,7,8" />
+          </label>
+        </div>
+      </div>
+    </section>
+
+    <section id="challenge" class="view">
+      <div class="panel">
+        <div class="challenge-header">
+          <div>
+            <p class="eyebrow">Contra su propio récord</p>
+            <h2>Desafío de 1 minuto</h2>
+          </div>
+          <div class="timer" id="timer">60</div>
+        </div>
+
+        <div class="stats-row">
+          <div><span id="challengeCorrect">0</span><small>Correctas</small></div>
+          <div><span id="challengeWrong">0</span><small>Errores</small></div>
+          <div><span id="bestScore">0</span><small>Récord</small></div>
+        </div>
+
+        <div class="card-area">
+          <div id="challengeQuestion" class="question">¿Listo?</div>
+          <form id="challengeForm" autocomplete="off">
+            <input
+              id="challengeInput"
+              type="number"
+              inputmode="numeric"
+              placeholder="Respuesta"
+              aria-label="Respuesta del desafío"
+              disabled
+            />
+            <button id="challengeSubmit" type="submit" class="primary" disabled>Responder</button>
+          </form>
+          <button id="startChallengeBtn" class="primary wide">Empezar desafío</button>
+          <p id="challengeFeedback" class="feedback" aria-live="polite"></p>
+        </div>
+      </div>
+    </section>
+
+    <section id="progress" class="view">
+      <div class="panel">
+        <div class="progress-head">
+          <div>
+            <p class="eyebrow">Qué sabe y qué conviene reforzar</p>
+            <h2>Progreso</h2>
+          </div>
+          <div class="legend">
+            <span>✅ Aprendida</span>
+            <span>🟡 Dudosa</span>
+            <span>🔴 Difícil</span>
+            <span>⚪ Sin practicar</span>
+          </div>
+        </div>
+
+        <div class="summary-grid">
+          <div class="summary-card">
+            <strong id="totalAnswers">0</strong>
+            <span>Respuestas totales</span>
+          </div>
+          <div class="summary-card">
+            <strong id="overallAccuracy">0%</strong>
+            <span>Precisión</span>
+          </div>
+          <div class="summary-card">
+            <strong id="masteredCount">0</strong>
+            <span>Operaciones aprendidas</span>
+          </div>
+        </div>
+
+        <div id="progressGrid" class="progress-grid"></div>
+      </div>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
